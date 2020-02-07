@@ -37,7 +37,7 @@ function getPriceAfterTaxes(item: Item) {
         case 'Medical Product':
             break;
         case 'General Goods': 
-            priceAfterTax = decimalAdjust(priceAfterTax + (priceAfterTax * item.type.tax), -1);
+            priceAfterTax = priceAfterTax + (priceAfterTax * item.type.tax);
             break;
         default:
             break;
@@ -47,7 +47,7 @@ function getPriceAfterTaxes(item: Item) {
         case 'Local':
             break;
         case 'Imported':
-            priceAfterTax = decimalAdjust(priceAfterTax + (priceAfterTax * item.market.tax), -1);
+            priceAfterTax = priceAfterTax + (priceAfterTax * item.market.tax);
             break;
         default:
             break;
