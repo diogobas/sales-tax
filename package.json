@@ -1,0 +1,30 @@
+{
+  "name": "sales-tax",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogobas/sales-tax.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diogobas/sales-tax/issues"
+  },
+  "homepage": "https://github.com/diogobas/sales-tax#readme",
+  "devDependencies": {
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.12.0"
+  }
+}
