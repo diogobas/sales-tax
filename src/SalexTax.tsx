@@ -1,29 +1,30 @@
 import * as React from 'react';
 import Receipt from './tables/Receipt';
 import AddItemForm from './forms/AddItemForm';
-
-export interface Item {
-    id: number;
-    item: string;
-    price: number;
-}
+import {Item, FreeTax, Local, GeneralGoods} from './typings/Item';
 
 export default function SalexTax() {
     const itemsData: Item[] = [
         {
             id: 1,
             item: 'Book',
-            price: 12.49
+            price: 12.49,
+            type: FreeTax,
+            market: Local
         },
         {
             id: 2,
             item: 'Music CD',
-            price: 14.99
+            price: 14.99,
+            type: GeneralGoods,
+            market: Local
         },
         {
             id: 3,
             item: 'Chocolate Bar',
-            price: 0.85
+            price: 0.85,
+            type: FreeTax,
+            market: Local
         }
     ];
 

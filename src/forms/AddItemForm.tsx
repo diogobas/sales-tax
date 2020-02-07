@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Item} from '../SalexTax';
+import {Item, GeneralGoods, Local} from '../typings/Item';
 
 interface Props {
     addItem: (item: Item) => void;
@@ -9,7 +9,9 @@ export default function AddItemForm({addItem}: Props) {
     const initialFormState: Item = {
         id: null,
         item: '',
-        price: 0
+        price: 0,
+        type: GeneralGoods,
+        market: Local
     };
     const [item, setItem] = React.useState(initialFormState);
 
