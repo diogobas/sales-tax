@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
+import './index.css'
 
-import Counter from './Counter';
+import SalexTax from './SalexTax';
 
-render(<Counter />, document.getElementById('main'));
+render(<SalexTax />, document.getElementById('main'));
