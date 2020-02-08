@@ -20,7 +20,7 @@ export const Local: Tax = {
 
 export const Imported : Tax = {
     name: 'Imported',
-    tax: .5
+    tax: .05
 }
 
 export interface Item {

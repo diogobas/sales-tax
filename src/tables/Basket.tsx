@@ -11,9 +11,9 @@ export default function Basket({items}: Props) {
             <thead>
                 <tr>
                     <th>{'Item'}</th>
-                    <th>{'Price'}</th>
                     <th>{'Type'}</th>
                     <th>{'Market'}</th>
+                    <th>{'Price'}</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,9 +23,9 @@ export default function Basket({items}: Props) {
                             return (
                                 <tr key={item.id}>
                                     <td>{item.item}</td>
-                                    <td>{item.price}</td>
                                     <td>{item.type.name}</td>
                                     <td>{item.market.name}</td>
+                                    <td>{item.price}</td>
                                 </tr>
                             );
                         })
