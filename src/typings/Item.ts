@@ -36,6 +36,7 @@ export const Imported : Tax = {
 
 export interface Item {
     id: number;
+    quantity: number;
     item: string;
     price: number;
     type: Tax;

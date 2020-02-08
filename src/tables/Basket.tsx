@@ -10,6 +10,7 @@ export default function Basket({items}: Props) {
         <table>
             <thead>
                 <tr>
+                    <th>{'Quantity'}</th>
                     <th>{'Item'}</th>
                     <th>{'Market'}</th>
                     <th>{'Type'}</th>
@@ -22,6 +23,7 @@ export default function Basket({items}: Props) {
                         items.map((item) => {
                             return (
                                 <tr key={item.id}>
+                                    <td>{item.quantity}</td>
                                     <td>{item.item}</td>
                                     <td>{item.market.name}</td>
                                     <td>{item.type.name}</td>

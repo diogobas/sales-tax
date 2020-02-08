@@ -46,7 +46,7 @@ function getCalculatedTax(item: Item) {
             break;
     }
 
-    return priceAfterTax;
+    return item.quantity * priceAfterTax;
 }
 
 export default function Receipt({items}: Props) {
@@ -57,6 +57,7 @@ export default function Receipt({items}: Props) {
         <table>
             <thead>
                 <tr>
+                    <th>{'Quantity'}</th>
                     <th>{'Item'}</th>
                     <th>{'Market'}</th>
                     <th>{'Type'}</th>
@@ -73,6 +74,7 @@ export default function Receipt({items}: Props) {
 
                         return (
                             <tr key={item.id}>
+                                <td>{item.quantity}</td>
                                 <td>{item.item}</td>
                                 <td>{item.market.name}</td>
                                 <td>{item.type.name}</td>
@@ -82,11 +84,11 @@ export default function Receipt({items}: Props) {
                     })
                 }
                 <tr>
-                    <td colSpan={3}>{'Sales Taxes'}</td>
+                    <td colSpan={4}><b>{'Sales Taxes'}</b></td>
                     <td>{salesTaxes.toFixed(2)}</td>
                 </tr>
                 <tr>
-                    <td colSpan={3}>{'Total'}</td>
+                    <td colSpan={4}><b>{'Total'}</b></td>
                     <td>{total.toFixed(2)}</td>
                 </tr>
             </tbody>
