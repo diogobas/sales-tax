@@ -5,12 +5,19 @@ interface Props {
     items: Item[];
 }
 
-function roundOffTax(price: number) {
-    return (price / 0.05 + 0.5) * 0.05;
+function calculateTax(price: number, rate: number) {
+    //sales tax are that for a tax rate of n%, a shelf price of p contains (np/100)
+    let tax = (price * rate);
+
+    //The rounding rules: rounded up to the nearest 0.05
+    tax = Math.ceil(tax / 0.05) * 0.05;
+
+    return tax;
 }
 
 function getCalculatedTax(item: Item) {
-    let priceAfterTax = item.price;
+    let priceAfterTax = item.price,
+        tax = 0;
     const regularTax = item.type.tax,
         importedTax = item.market.tax;
 
@@ -18,15 +25,22 @@ function getCalculatedTax(item: Item) {
         case 'Book':
         case 'Food':
         case 'Medical Product':
-            break;
-        case 'General Goods': {
-            if (item.market.name === 'Local') {
-                priceAfterTax = priceAfterTax + priceAfterTax * regularTax;
-            } else {
-                priceAfterTax = roundOffTax(priceAfterTax + priceAfterTax * (regularTax + importedTax));
+            if (item.market.name !== 'Local') {
+                tax = calculateTax(item.price, importedTax);
+
+                priceAfterTax = tax + item.price;
             }
-        }
-            
+            break;
+        case 'General Goods': 
+            if (item.market.name === 'Local') {
+                tax = calculateTax(item.price, regularTax);
+
+                priceAfterTax = tax + item.price;
+            } else {
+                tax = calculateTax(item.price, regularTax + importedTax);
+
+                priceAfterTax = tax + item.price;
+            }
             break;
         default:
             break;
@@ -62,18 +76,18 @@ export default function Receipt({items}: Props) {
                                 <td>{item.item}</td>
                                 <td>{item.type.name}</td>
                                 <td>{item.market.name}</td>
-                                <td>{priceAfterTax}</td>
+                                <td>{priceAfterTax.toFixed(2)}</td>
                             </tr>
                         );
                     })
                 }
                 <tr>
                     <td colSpan={3}>{'Sales Taxes'}</td>
-                    <td>{roundOffTax(salesTaxes)}</td>
+                    <td>{salesTaxes.toFixed(2)}</td>
                 </tr>
                 <tr>
                     <td colSpan={3}>{'Total'}</td>
-                    <td>{roundOffTax(total)}</td>
+                    <td>{total.toFixed(2)}</td>
                 </tr>
             </tbody>
         </table>
