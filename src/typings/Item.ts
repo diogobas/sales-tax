@@ -3,10 +3,21 @@ type Tax = {
     tax: number;
 }
 
-export const FreeTax: Tax = {
-    name: 'Book' || 'Food' || 'Medical Product',
+export const Book: Tax = {
+    name: 'Book',
     tax: 0
 } 
+
+export const Food: Tax = {
+    name: 'Food',
+    tax: 0
+} 
+
+export const MedicalProduct: Tax = {
+    name: 'MedicalProduct',
+    tax: 0
+} 
+
 
 export const GeneralGoods: Tax = {
     name: 'General Goods',

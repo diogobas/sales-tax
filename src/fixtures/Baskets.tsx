@@ -1,4 +1,4 @@
-import {FreeTax, Local, GeneralGoods, Item, Imported} from "../typings/Item"
+import {Local, GeneralGoods, Imported, Book, Food, MedicalProduct} from "../typings/Item"
 
 const basket1 = {
     id: 1,
@@ -7,7 +7,7 @@ const basket1 = {
             id: 1,
             item: 'Book',
             price: 12.49,
-            type: FreeTax,
+            type: Book,
             market: Local
         },
         {
@@ -21,7 +21,7 @@ const basket1 = {
             id: 3,
             item: 'Chocolate Bar',
             price: 0.85,
-            type: FreeTax,
+            type: Food,
             market: Local
         }
     ]
@@ -34,7 +34,7 @@ const basket2 = {
             id: 1,
             item: 'Box of chocolates',
             price: 10,
-            type: FreeTax,
+            type: Food,
             market: Imported
         },
         {
@@ -68,14 +68,14 @@ const basket3 = {
             id: 3,
             item: 'Headache Pills',
             price: 9.75,
-            type: FreeTax,
+            type: MedicalProduct,
             market: Local
         },
         {
             id: 4,
             item: 'Chocolates',
             price: 11.25,
-            type: FreeTax,
+            type: Food,
             market: Imported
         }
     ]
