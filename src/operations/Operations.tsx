@@ -39,6 +39,7 @@ function getCalculatedTax(item: Item) {
             }
             break;
         case 'General Goods': 
+            console.log('here');
             if (item.market.name === 'Local') {
                 tax = calculateTax(item.price, regularTax);
 
