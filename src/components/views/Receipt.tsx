@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Item} from '../../typings/Item';
 import SpanningTable from '../dataDisplay/SpanningTable';
-import {calculateItemsPrice} from '../../operations/Operations';
+import {calculateItemsPrice} from '../operations/Operations';
 
 interface Props {
     items: Item[];

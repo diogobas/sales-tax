@@ -1,9 +1,6 @@
 const expect = require('expect');
-const operations = require('../src/operations/Operations.tsx');
-
-function ccyFormat(num: number) {
-    return num.toFixed(2);
-}
+const operations = require('../src/components/operations/Operations.tsx');
+const utils = require('../src/utils/ccyFormat.ts');
 
 describe('Operations', () => {
 	describe('calculateItemsPrice method', () => {
@@ -48,7 +45,8 @@ describe('Operations', () => {
 				},
 				results = operations.calculateItemsPrice(items);
 
-			expect(expectedResults).toStrictEqual(results);
+				expect(expectedResults.items[0].price).toEqual(12.49);
+				expect(expectedResults).toStrictEqual(results);
 		});
 	});
 		
@@ -93,7 +91,7 @@ describe('Operations', () => {
 					expectedResult = 16.49,
 					results = operations.getCalculatedTax(item);
 
-				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
+				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
 			});
 			
 			it('should properly calculate the tax from an item that is an exemption, but Imported', () => {
@@ -114,7 +112,7 @@ describe('Operations', () => {
 					expectedResult = 10.50,
 					results = operations.getCalculatedTax(item);
 
-				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
+				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
 			});
 			
 			it('should properly calculate the tax from an Imported non exemption taxed item', () => {
@@ -135,10 +133,10 @@ describe('Operations', () => {
 					expectedResult = 54.65,
 					results = operations.getCalculatedTax(item);
 
-				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
+				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
 			});
 		});
-		describe('Secondary Operations', () => {
+		describe('Calculate Tax from 2 Products', () => {
 			it('should properly calculate the tax from 2 products from a tax exemption item', () => {
 				const item = {
 						id: 1,
@@ -178,7 +176,7 @@ describe('Operations', () => {
 					expectedResult = 33.00,
 					results = operations.getCalculatedTax(item);
 
-				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
+				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
 			});
 
 			it('should properly calculate the tax from 2 products from an item that is exemptions, but Imported', () => {
@@ -199,7 +197,7 @@ describe('Operations', () => {
 					expectedResult = 14.68,
 					results = operations.getCalculatedTax(item);
 
-				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
+				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
 			});
 
 			it('should properly calculate the tax from 2 products from an Imported non exemption taxed item', () => {
@@ -220,7 +218,7 @@ describe('Operations', () => {
 					expectedResult = 234.92,
 					results = operations.getCalculatedTax(item);
 
-				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
+				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
 			});
 		});
 	});
@@ -240,7 +238,7 @@ describe('Operations', () => {
 				expectedResults = 1.20,
 				results = operations.calculateTax(price, rate);
 
-			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
+			expect(utils.ccyFormat(expectedResults)).toEqual(utils.ccyFormat(results));
 		});
 
 		it('should properly return the tax of a regular item with a 0.10 rate', () => {
@@ -249,7 +247,7 @@ describe('Operations', () => {
 				expectedResults = 95.25,
 				results = operations.calculateTax(price, rate);
 
-			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
+			expect(utils.ccyFormat(expectedResults)).toEqual(utils.ccyFormat(results));
 		});
 
 		it('should properly return the tax of a regular item with a rate different from 0.05 and 0.10', () => {
@@ -258,7 +256,7 @@ describe('Operations', () => {
 				expectedResults = 3.45,
 				results = operations.calculateTax(price, rate);
 
-			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
+			expect(utils.ccyFormat(expectedResults)).toEqual(utils.ccyFormat(results));
 		});
 	});
 });
