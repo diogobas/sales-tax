@@ -1,4 +1,4 @@
-import {Local, GeneralGoods, Imported, Book, Food, MedicalProduct} from "../typings/Item"
+import {Local, GeneralGoods, Imported, Book, Food, MedicalProduct} from "../../typings/Item"
 
 const basket1 = {
     id: 1,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Item} from '../typings/Item';
+import {Item} from '../../typings/Item';
 
 interface Props {
     items: Item[];

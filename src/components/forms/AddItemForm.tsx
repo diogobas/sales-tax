@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Item, GeneralGoods, Local} from '../typings/Item';
+import {Item, GeneralGoods, Local} from '../../typings/Item';
 
 interface Props {
     addItem: (item: Item) => void;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Receipt from './tables/Receipt';
-import {Item} from './typings/Item';
+import {Item} from '../typings/Item';
 import {baskets} from './fixtures/Baskets';
 import Basket from './tables/Basket';
 
