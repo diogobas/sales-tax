@@ -1,9 +1,15 @@
-import * as React from 'react';
-import {Item} from '../../typings/Item';
-import SpanningTable from '../dataDisplay/SpanningTable';
+type Tax = {
+    name: string;
+    tax: number;
+}
 
-interface Props {
-    items: Item[];
+interface Item {
+    id: number;
+    quantity: number;
+    item: string;
+    price: number;
+    type: Tax;
+    market: Tax;
 }
 
 function calculateTax(price: number, rate: number) {
@@ -51,7 +57,7 @@ function getCalculatedTax(item: Item) {
 }
 
 
-function calculateItemsPrice(items: Item[]) {
+export function calculateItemsPrice(items: Item[]) {
     let total = 0,
         salesTaxes = 0;
 
@@ -77,14 +83,3 @@ function calculateItemsPrice(items: Item[]) {
         }
     });
 }
-
-export default function Receipt({items}: Props) {
-    const calculatedItems = calculateItemsPrice(items);
-
-    return (
-        <SpanningTable
-            items={calculatedItems.items}
-            spanningRows={calculatedItems.sumUp}
-        />
-    );
-};

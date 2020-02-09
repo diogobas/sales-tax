@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {render} from 'react-dom';
-import '../../styles/index.css'
 
 import SalexTax from './SalexTax';
 

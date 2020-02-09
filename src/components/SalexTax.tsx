@@ -10,16 +10,16 @@ export default function SalexTax() {
             {
                 baskets.map((basket) => {
                     return (
-                        <div className="flex-row">
-                            <div className="flex-large">
+                        <>
+                            <>
                                 <h2>{`Basket ${basket.id}`}</h2>
                                 <Basket items={basket.items} />
-                            </div>
-                            <div className="flex-large">
+                            </>
+                            <>
                                 <h2>{'Receipt'}</h2>
                                 <Receipt items={basket.items} />
-                            </div>
-                        </div>
+                            </>
+                        </>
                     );
                 })
             }
