@@ -224,4 +224,41 @@ describe('Operations', () => {
 			});
 		});
 	});
+	describe('calculateTax method', () => {
+		it('should properly return the tax of a regular item without a rate', () => {
+			const price = 98.54,
+				rate = 0,
+				expectedResults = 0,
+				results = operations.calculateTax(price, rate);
+
+			expect(expectedResults).toEqual(results);
+		});
+
+		it('should properly return the tax of a regular item with a 0.05 rate', () => {
+			const price = 23.22,
+				rate = 0.05,
+				expectedResults = 1.20,
+				results = operations.calculateTax(price, rate);
+
+			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
+		});
+
+		it('should properly return the tax of a regular item with a 0.10 rate', () => {
+			const price = 952.33,
+				rate = 0.10,
+				expectedResults = 95.25,
+				results = operations.calculateTax(price, rate);
+
+			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
+		});
+
+		it('should properly return the tax of a regular item with a rate different from 0.05 and 0.10', () => {
+			const price = 18.12,
+				rate = 0.19,
+				expectedResults = 3.45,
+				results = operations.calculateTax(price, rate);
+
+			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
+		});
+	});
 });

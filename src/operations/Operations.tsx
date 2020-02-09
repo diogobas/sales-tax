@@ -12,7 +12,7 @@ interface Item {
     market: Tax;
 }
 
-function calculateTax(price: number, rate: number) {
+export function calculateTax(price: number, rate: number) {
     //sales tax are that for a tax rate of n%, a shelf price of p contains (np/100)
     let tax = (price * rate);
 
@@ -34,25 +34,20 @@ export function getCalculatedTax(item: Item) {
         case 'Medical Product':
             if (item.market.name !== 'Local') {
                 tax = calculateTax(item.price, importedTax);
-
-                priceAfterTax = tax + item.price;
             }
             break;
         case 'General Goods': 
-            console.log('here');
             if (item.market.name === 'Local') {
                 tax = calculateTax(item.price, regularTax);
-
-                priceAfterTax = tax + item.price;
             } else {
                 tax = calculateTax(item.price, regularTax + importedTax);
-
-                priceAfterTax = tax + item.price;
             }
             break;
         default:
             break;
     }
+
+    priceAfterTax = tax + item.price;
 
     return item.quantity * priceAfterTax;
 }
