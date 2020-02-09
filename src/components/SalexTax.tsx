@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Receipt from './tables/Receipt';
-import {Item} from '../typings/Item';
+import Receipt from './../components/views/Receipt';
 import {baskets} from './fixtures/Baskets';
-import Basket from './tables/Basket';
+import Basket from './../components/views/Basket';
 
 export default function SalexTax() {
     return (
@@ -10,26 +9,15 @@ export default function SalexTax() {
             <h1>{'Sales Tax'}</h1>
             {
                 baskets.map((basket) => {
-                    const [items, setItems] = React.useState(basket.items);
-            
-                    function addItem(item: Item) {
-                        item.id = items.length + 1;
-            
-                        setItems([
-                            ...items,
-                            item
-                        ]);
-                    }
-            
                     return (
                         <div className="flex-row">
                             <div className="flex-large">
                                 <h2>{`Basket ${basket.id}`}</h2>
-                                <Basket items={items} />
+                                <Basket items={basket.items} />
                             </div>
                             <div className="flex-large">
                                 <h2>{'Receipt'}</h2>
-                                <Receipt items={items} />
+                                <Receipt items={basket.items} />
                             </div>
                         </div>
                     );
