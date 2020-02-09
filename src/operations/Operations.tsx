@@ -22,7 +22,7 @@ function calculateTax(price: number, rate: number) {
     return tax;
 }
 
-function getCalculatedTax(item: Item) {
+export function getCalculatedTax(item: Item) {
     let priceAfterTax = item.price,
         tax = 0;
     const regularTax = item.type.tax,

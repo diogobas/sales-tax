@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import {Item} from '../../typings/Item';
 import {useStyles} from '../../../styles';
+import {ccyFormat} from '../../utils/ccyFormat';
 
 interface SpanningRows {
     total: number;
@@ -16,10 +17,6 @@ interface SpanningRows {
 interface Props {
     items: Item[];
     spanningRows?: SpanningRows;
-}
-
-function ccyFormat(num: number) {
-    return num.toFixed(2);
 }
 
 export default function SpanningTable({items, spanningRows}: Props) {
