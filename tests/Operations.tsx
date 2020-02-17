@@ -1,6 +1,6 @@
-const expect = require('expect');
-const operations = require('../src/components/operations/Operations.tsx');
-const utils = require('../src/utils/ccyFormat.ts');
+import * as expect from 'expect';
+import {ccyFormat} from '../src/utils/ccyFormat';
+import {calculateItemsPrice, getCalculatedTax, calculateTax} from '../src/components/operations/Operations';
 
 describe('Operations', () => {
 	describe('calculateItemsPrice method', () => {
@@ -43,7 +43,7 @@ describe('Operations', () => {
 						salesTaxes: 0
 					}
 				},
-				results = operations.calculateItemsPrice(items);
+				results = calculateItemsPrice(items);
 
 				expect(expectedResults.items[0].price).toEqual(12.49);
 				expect(expectedResults).toStrictEqual(results);
@@ -68,7 +68,7 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 12.49,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
 				expect(expectedResult).toEqual(results);
 			});
@@ -89,9 +89,9 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 16.49,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
-				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
+				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
 			});
 			
 			it('should properly calculate the tax from an item that is an exemption, but Imported', () => {
@@ -110,9 +110,9 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 10.50,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
-				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
+				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
 			});
 			
 			it('should properly calculate the tax from an Imported non exemption taxed item', () => {
@@ -131,9 +131,9 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 54.65,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
-				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
+				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
 			});
 		});
 		describe('Calculate Tax from 2 Products', () => {
@@ -153,7 +153,7 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 10.00,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
 				expect(expectedResult).toEqual(results);
 			});
@@ -174,9 +174,9 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 33.00,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
-				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
+				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
 			});
 
 			it('should properly calculate the tax from 2 products from an item that is exemptions, but Imported', () => {
@@ -195,9 +195,9 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 14.68,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
-				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
+				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
 			});
 
 			it('should properly calculate the tax from 2 products from an Imported non exemption taxed item', () => {
@@ -216,9 +216,9 @@ describe('Operations', () => {
 						}
 					},
 					expectedResult = 234.92,
-					results = operations.getCalculatedTax(item);
+					results = getCalculatedTax(item);
 
-				expect(utils.ccyFormat(expectedResult)).toEqual(utils.ccyFormat(results));
+				expect(ccyFormat(expectedResult)).toEqual(ccyFormat(results));
 			});
 		});
 	});
@@ -227,7 +227,7 @@ describe('Operations', () => {
 			const price = 98.54,
 				rate = 0,
 				expectedResults = 0,
-				results = operations.calculateTax(price, rate);
+				results = calculateTax(price, rate);
 
 			expect(expectedResults).toEqual(results);
 		});
@@ -236,27 +236,27 @@ describe('Operations', () => {
 			const price = 23.22,
 				rate = 0.05,
 				expectedResults = 1.20,
-				results = operations.calculateTax(price, rate);
+				results = calculateTax(price, rate);
 
-			expect(utils.ccyFormat(expectedResults)).toEqual(utils.ccyFormat(results));
+			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
 		});
 
 		it('should properly return the tax of a regular item with a 0.10 rate', () => {
 			const price = 952.33,
 				rate = 0.10,
 				expectedResults = 95.25,
-				results = operations.calculateTax(price, rate);
+				results = calculateTax(price, rate);
 
-			expect(utils.ccyFormat(expectedResults)).toEqual(utils.ccyFormat(results));
+			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
 		});
 
 		it('should properly return the tax of a regular item with a rate different from 0.05 and 0.10', () => {
 			const price = 18.12,
 				rate = 0.19,
 				expectedResults = 3.45,
-				results = operations.calculateTax(price, rate);
+				results = calculateTax(price, rate);
 
-			expect(utils.ccyFormat(expectedResults)).toEqual(utils.ccyFormat(results));
+			expect(ccyFormat(expectedResults)).toEqual(ccyFormat(results));
 		});
 	});
 });

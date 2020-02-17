@@ -1,16 +1,4 @@
-type Tax = {
-    name: string;
-    tax: number;
-}
-
-interface Item {
-    id: number;
-    quantity: number;
-    item: string;
-    price: number;
-    type: Tax;
-    market: Tax;
-}
+import {Item} from "../../typings/Item";
 
 export function calculateTax(price: number, rate: number) {
     //sales tax are that for a tax rate of n%, a shelf price of p contains (np/100)
